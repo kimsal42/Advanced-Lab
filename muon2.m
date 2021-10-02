@@ -17,6 +17,10 @@ figure(3); clf
 plot(bincenter,altbinsl,'.','markersize',20);
 hold on
 errorbar(bincenter, altbinsl, error);
+print figure4.png
+###########################################################
+# this section of code was the brute force of finding counts and can be ignored
+#####################################################
 #set(h,"markersize = 20")
 #for i = 1:length(allbins);
  # bincount = 0;
@@ -42,6 +46,8 @@ errorbar(bincenter, altbinsl, error);
 
 % logarithmic plot
 
+###################################################################################
+
 binedges = logspace(-7,1,100);
 #allbinsl = NaN(100-1,1);
 #for i = 1:length(allbinsl);
@@ -55,6 +61,7 @@ binedges = logspace(-7,1,100);
   #allbinsl(i) = bincount;
   #toc
  #endfor
+ ###########################################################################
 
 tbinsl = sum(allbinsl);
 
@@ -75,7 +82,7 @@ poisson = Rate*e.^(-Rate*t);
 
 # settin up a logarithmic scale
 binedges = logspace(-7,0,100); # finding the binedges in logarithmic scale
-allbinsl = histc (data+(100*(10^-9)), binedges); # finding the counts in each bin
+allbinsl = histc (data+(106*(10^-9)), binedges); # finding the counts in each bin
 allbinsl= allbinsl(1:end-1); # correcting the bin due to hist c
 totalb = sum(allbinsl); # sum of all bins
 altbinsl = (1/totalb)*allbinsl./(diff(binedges'));
@@ -90,3 +97,4 @@ plot(t,log10(poisson),'b--','linewidth',2);
 hold on
 errorbar (bincenter, log10(altbinsl), errory,'.r');
 set(gca,'xscale','log')%,'yscale','log')
+print figure4.png
